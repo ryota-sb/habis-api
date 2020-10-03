@@ -19,7 +19,7 @@ module HabisApi
   class Application < Rails::Application
     config.load_defaults 6.0
     config.api_only = true
-    config.generator do |g|
+    config.generators do |g|
       g.test_framework false
     end
   end
