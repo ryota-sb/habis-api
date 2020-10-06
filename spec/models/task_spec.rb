@@ -13,7 +13,7 @@ RSpec.describe Task, type: :model do
       let(:task) { build(:task, content: nil) }
       it "エラーになる" do
         task.valid?
-        expect(task.errors.messages[:task]).to include "can't be blank"
+        expect(task.errors.added?(:content, :blank)).to be_truthy
       end
     end
   end
