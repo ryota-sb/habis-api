@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :task do
-    content { "test content" }
-    week { "monday" }
+    content { 'Sample Content' }
     is_done { false }
+    week { 'monday' }
   end
-end 
+end
