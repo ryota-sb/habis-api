@@ -22,7 +22,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params)
+    if @task.toggle!(:is_done)
       render json: { status: 'success', message: 'update the task', data: @task }
     else
       render json: { status: 'error', message: 'not updated', data: @task.errors }
