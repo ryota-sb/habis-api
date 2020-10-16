@@ -7,4 +7,7 @@ Rails.application.routes.draw do
       resources :tasks, only: [:index, :show, :create, :update, :destroy]
     end
   end
+
+  root  'rails/welcome#index'
+  post '/callback', to: 'linebot#callback'
 end
