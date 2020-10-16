@@ -15,10 +15,21 @@ require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
 
-module HabisApi
+module RouteApi
   class Application < Rails::Application
     config.load_defaults 6.0
     config.api_only = true
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+        :headers => :any,
+        :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+        :methods => [:get, :post, :options, :delete, :put]
+      end
+    end
+
     config.generators do |g|
       g.test_framework false
     end
