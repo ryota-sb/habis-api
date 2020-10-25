@@ -21,16 +21,16 @@ class LinebotsController < ApplicationController
 
     events = client.parse_events_from(body)
 
-  events.each do |event|
-    reply_text_list = []
-    case event.message['text']
-    when 'リセット'
-      reply_text_list.push(reset_tasks(get_day_of_the_week))
-    else
-      reply_text_list.push('そのコマンドはありません')
-    end
+    events.each do |event|
+      reply_text_list = []
+      case event.message['text']
+      when 'リセット'
+        reply_text_list.push(reset_tasks(get_day_of_the_week))
+      else
+        reply_text_list.push('そのコマンドはありません')
+      end
 
-    case event
+      case event
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
