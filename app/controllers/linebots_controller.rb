@@ -2,7 +2,7 @@ class LinebotsController < ApplicationController
   require 'line/bot'
   require 'date'
 
-  protect_from_forgery :except => [:callback, :line_events]
+  protect_from_forgery :except => [:callback, :recieve]
 
   # 完了タスクのリセット
   def reset_tasks(week)
