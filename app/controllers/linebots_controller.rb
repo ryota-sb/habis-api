@@ -48,7 +48,7 @@ class LinebotsController < ApplicationController
     body = request.body.read
     events = client.parse_events_from(body)
     events.each do |event|
-      userId = event.source.user_id
+      userId = event["source"]["userId"]
       p userId
     end
   end
