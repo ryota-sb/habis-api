@@ -52,29 +52,29 @@ class LinebotsController < ApplicationController
       linkToken = client.create_link_token(userId)
       case event.message['text']
       when '連携'
-        client.reply_message(event['replyToken'], template(userId, linkToken))
+        client.reply_message(event['replyToken'], template)
       else
         "コマンドはありません。"
       end
     end
   end
 
-  def template(user_id, link_token)
+  def template
     {
-      "to": "#{user_id}",
-      "messages": [{
-          "type": "template",
-          "altText": "Account Link",
-          "template": {
-              "type": "buttons",
-              "text": "Account Link",
-              "actions": [{
-                  "type": "uri",
-                  "label": "Account Link",
-                  "uri": "http://example.com/link?linkToken=#{link_token}"
-              }]
+      "type": "template",
+      "altText": "位置検索中",
+      "template": {
+        "type": "buttons",
+        "title": "最寄駅探索探索",
+        "text": "現在の位置を送信しますか？",
+        "actions": [
+          {
+            "type": "uri",
+            "label": "位置を送る",
+            "uri": "line://nv/location"
           }
-      }]
+        ]
+      }
     }
   end
 
