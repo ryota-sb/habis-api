@@ -49,9 +49,28 @@ class LinebotsController < ApplicationController
     events = client.parse_events_from(body)
     events.each do |event|
       userId = event["source"]["userId"]
-      link_token = client.create_link_token(userId)
-      return link_token
+      if event.message['連携']
+        client.reply_message(event['replyToken'], template(userId))
     end
+  end
+
+  def template(user_id)
+    {
+      "to": user_id,
+      "messages": [{
+          "type": "template",
+          "altText": "Account Link",
+          "template": {
+              "type": "buttons",
+              "text": "Account Link",
+              "actions": [{
+                  "type": "uri",
+                  "label": "Account Link",
+                  "uri": "http://example.com/link?linkToken=#{ENV["LINE_CHANNEL_SECRET"]}"
+              }]
+          }
+      }]
+    }
   end
 
   private
