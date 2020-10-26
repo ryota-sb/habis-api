@@ -2,7 +2,7 @@ class LinebotsController < ApplicationController
   require 'line/bot'
   require 'date'
 
-  protect_from_forgery :except => [:callback, :recieve]
+  protect_from_forgery :except => [:callback, :getLinkToken]
 
   # 完了タスクのリセット
   def reset_tasks(week)
@@ -44,12 +44,13 @@ class LinebotsController < ApplicationController
     head :ok
   end
 
-  def recieve
+  def getLinkToken
     body = request.body.read
     events = client.parse_events_from(body)
     events.each do |event|
       userId = event["source"]["userId"]
-      p userId
+      link_token = client.create_link_token(userId)
+      return link_token
     end
   end
 
