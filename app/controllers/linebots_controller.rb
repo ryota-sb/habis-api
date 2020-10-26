@@ -69,7 +69,7 @@ class LinebotsController < ApplicationController
           {
             "type": "uri",
             "label": "アカウントリンク",
-            "uri": "https://api.line.me/v2/bot/link?linkToken=xVM3xmJkmIqPAZzd2NPKidzdyUbtLOfJ"
+            "uri": "https://master.d3c223wu21rtgk.amplifyapp.com//link?linkToken=EiAGGYQGtAtbcp1aJntuz2Mjkcql66xb"
           }
         ]
       }
