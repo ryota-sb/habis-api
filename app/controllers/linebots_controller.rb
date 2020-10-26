@@ -51,6 +51,7 @@ class LinebotsController < ApplicationController
       userId = event["source"]["userId"]
       if event.message['連携']
         client.reply_message(event['replyToken'], template(userId))
+      end
     end
   end
 
