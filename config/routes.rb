@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
 
   root  'rails/welcome#index'
-  post  '/line_events', to: 'linebots#recieve'
+  post  '/line_events', to: 'linebots#getLinkToken'
   post  '/callback', to: 'linebots#callback'
 end
