@@ -53,8 +53,6 @@ class LinebotsController < ApplicationController
       case event.message['text']
       when '連携'
         client.reply_message(event['replyToken'], template)
-      else
-        "コマンドはありません。"
       end
     end
   end
@@ -62,7 +60,7 @@ class LinebotsController < ApplicationController
   def template
     {
       "type": "template",
-      "altText": "位置検索中",
+      "altText": "アカウントリンク",
       "template": {
         "type": "buttons",
         "title": "最寄駅探索探索",
@@ -70,8 +68,8 @@ class LinebotsController < ApplicationController
         "actions": [
           {
             "type": "uri",
-            "label": "位置を送る",
-            "uri": "line://nv/location"
+            "label": "アカウントリンク",
+            "uri": "https://api.line.me/v2/bot/link?linkToken=xVM3xmJkmIqPAZzd2NPKidzdyUbtLOfJ"
           }
         ]
       }
