@@ -50,8 +50,11 @@ class LinebotsController < ApplicationController
     events.each do |event|
       userId = event["source"]["userId"]
       linkToken = client.create_link_token(userId)
-      if event.message['連携']
+      case event.message['text']
+      when '連携'
         client.reply_message(event['replyToken'], template(userId, linkToken))
+      else
+        "コマンドはありません。"
       end
     end
   end
