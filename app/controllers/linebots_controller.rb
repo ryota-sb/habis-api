@@ -49,15 +49,16 @@ class LinebotsController < ApplicationController
     events = client.parse_events_from(body)
     events.each do |event|
       userId = event["source"]["userId"]
+      linkToken = client.create_link_token(userId)
       if event.message['連携']
-        client.reply_message(event['replyToken'], template(userId))
+        client.reply_message(event['replyToken'], template(userId, linkToken))
       end
     end
   end
 
-  def template(user_id)
+  def template(user_id, link_token)
     {
-      "to": user_id,
+      "to": "#{user_id}",
       "messages": [{
           "type": "template",
           "altText": "Account Link",
@@ -67,7 +68,7 @@ class LinebotsController < ApplicationController
               "actions": [{
                   "type": "uri",
                   "label": "Account Link",
-                  "uri": "http://example.com/link?linkToken=#{ENV["LINE_CHANNEL_SECRET"]}"
+                  "uri": "http://example.com/link?linkToken=#{link_token}"
               }]
           }
       }]
