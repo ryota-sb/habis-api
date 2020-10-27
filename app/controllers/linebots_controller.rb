@@ -59,7 +59,7 @@ class LinebotsController < ApplicationController
 
   def template(user_id)
     {
-      "to": "#{user_id}"
+      "to": "#{user_id}",
       "messages": [{
         "type": "template",
         "altText": "アカウントリンク",
@@ -70,7 +70,7 @@ class LinebotsController < ApplicationController
           "actions": [{
             "type": "uri",
             "label": "アカウントリンク",
-            "uri": "https://master.d3c223wu21rtgk.amplifyapp.com//signin?linkToken=ADaqlfWPpeQvSXHNlXf1sd2CMaausKXN"
+            "uri": "https://master.d3c223wu21rtgk.amplifyapp.com//signin?linkToken=9uYhX7spPI8VE8kqWr4O1s4r6OkP0Iqk"
           }]
         }
       }]
