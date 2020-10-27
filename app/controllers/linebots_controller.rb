@@ -52,27 +52,28 @@ class LinebotsController < ApplicationController
       linkToken = client.create_link_token(userId)
       case event.message['text']
       when '連携'
-        client.reply_message(event['replyToken'], template)
+        client.reply_message(event['replyToken'], template(userId))
       end
     end
   end
 
-  def template
+  def template(user_id)
     {
-      "type": "template",
-      "altText": "アカウントリンク",
-      "template": {
-        "type": "buttons",
-        "title": "最寄駅探索探索",
-        "text": "現在の位置を送信しますか？",
-        "actions": [
-          {
+      "to": "#{user_id}"
+      "messages": [{
+        "type": "template",
+        "altText": "アカウントリンク",
+        "template": {
+          "type": "buttons",
+          "title": "最寄駅探索探索",
+          "text": "現在の位置を送信しますか？",
+          "actions": [{
             "type": "uri",
             "label": "アカウントリンク",
-            "uri": "https://master.d3c223wu21rtgk.amplifyapp.com//signin?linkToken=OzcK0cNgeYf0tGYPksoiF6ocPZ8DR9H0"
-          }
-        ]
-      }
+            "uri": "https://master.d3c223wu21rtgk.amplifyapp.com//signin?linkToken=ADaqlfWPpeQvSXHNlXf1sd2CMaausKXN"
+          }]
+        }
+      }]
     }
   end
 
